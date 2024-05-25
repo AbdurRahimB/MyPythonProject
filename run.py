@@ -23,8 +23,24 @@ def get_mark_data():
     print("Data should be six numbers, separated by commas.")
     print("Example: 90,80,95,80,70,30\n")
 
-    data_str = input("Enter your Mark here: ")
-    print(f"The data provided is {data_str}")
+    data_str = input("Enter your data here: ")
+    mark_data = data_str.split(",")
+    validate_data(mark_data)
+
+
+def validate_data(values):
+    """
+    Inside the try, converts all string values into integers.
+    Raises ValueError if strings cannot be converted into int,
+    or if there aren't exactly 7 values.
+    """
+    try:
+        if len(values) != 7:
+            raise ValueError(
+                f"Exactly 7 values required, you provided {len(values)}"
+            )
+    except ValueError as e:
+        print(f"Invalid data: {e}, please try again.\n")
 
 
 get_mark_data()
