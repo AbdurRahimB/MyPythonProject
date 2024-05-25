@@ -17,7 +17,10 @@ SHEET = GSPREAD_CLIENT.open('mark_sheet')
 
 def get_mark_data():
     """
-    Get Mark figures input from the user.
+    Get mark figures input from the user.
+    Run a while loop to collect a valid string of data from the user
+    via the terminal, which must be a string of 7 numbers separated
+    by commas. The loop will repeatedly request data, until it is valid.
     """
     while True:
         print("Please enter Mark data.")
@@ -54,4 +57,16 @@ def validate_data(values):
     return True
 
 
+def update_mark_worksheet(data):
+    """
+    Update mark worksheet, add new row with the list data provided
+    """
+    print("Updating mark worksheet...\n")
+    mark_worksheet = SHEET.worksheet("mark")
+    mark_worksheet.append_row(data)
+    print("Mark worksheet updated successfully.\n")
+
+
 data = get_mark_data()
+mark_data = [int(num) for num in data]
+update_mark_worksheet(mark_data)
