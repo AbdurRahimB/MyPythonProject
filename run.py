@@ -67,6 +67,55 @@ def update_mark_worksheet(data):
     print("Mark worksheet updated successfully.\n")
 
 
-data = get_mark_data()
-mark_data = [int(num) for num in data]
-update_mark_worksheet(mark_data)
+def calculate_and_update_total_marks():
+    """
+    Calculate the total marks for each student and update the result worksheet
+    """
+    mark_worksheet = SHEET.worksheet("mark")
+    result_worksheet = SHEET.worksheet("result")    
+
+    marks = mark_worksheet.get_all_values()
+    results = []
+
+    for row in marks[1:]:  # Skip the header row
+        total = sum(int(mark) for mark in row)
+        results.append([total])
+        
+
+    for result in results:
+        result_worksheet.append_row(result)
+       
+
+
+
+def calculate_and_update_total_marks():
+    """
+    Calculate the total marks for each student and update the result worksheet
+    """
+    mark_worksheet = SHEET.worksheet("mark")
+    result_worksheet = SHEET.worksheet("result")
+
+    marks = mark_worksheet.get_all_values()
+    results = []
+
+    for row in marks[1:]:  # Skip the header row
+        total = sum(int(mark) for mark in row if mark.strip() != '')
+        results.append([total])
+
+    for result in results:
+        result_worksheet.append_row(result)
+        
+    print("Result worksheet updated successfully.\n")
+
+def main():
+    """
+    Run all program functions.
+    """
+    data = get_mark_data()
+    mark_data = [int(num) for num in data]
+    update_mark_worksheet(mark_data)
+
+    calculate_and_update_total_marks()
+
+print("Welcome to the Mark Sheet Automation Program.\n")
+main()
