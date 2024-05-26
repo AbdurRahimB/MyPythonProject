@@ -24,8 +24,8 @@ def get_mark_data():
     """
     while True:
         print("Please enter Mark data.")
-        print("Data should be six numbers, separated by commas.")
-        print("Example: 90,80,95,80,70,30\n")
+        print("Data should be seven numbers, separated by commas.")
+        print("Example: 90,80,95,80,70,30,76\n")
 
         data_str = input("Enter your data here: ")
 
@@ -95,8 +95,10 @@ def calculate_and_update_total_marks():
     mark_worksheet = SHEET.worksheet("mark")
     result_worksheet = SHEET.worksheet("result")
 
+    print("Updating Result worksheet...\n")
     marks = mark_worksheet.get_all_values()
     results = []
+    
 
     for row in marks[1:]:  # Skip the header row
         total = sum(int(mark) for mark in row if mark.strip() != '')
@@ -107,6 +109,43 @@ def calculate_and_update_total_marks():
         
     print("Result worksheet updated successfully.\n")
 
+
+def assign_grades():
+    """
+    Assign grades based on the total marks and update the grade worksheet
+    """
+    print("Updating Grades worksheet...\n")
+    result_worksheet = SHEET.worksheet("result")
+    grade_worksheet = SHEET.worksheet("grade")
+
+    results = result_worksheet.get_all_values()
+    grades = []
+
+    for row in results[1:]:  # Skip the header row
+        total = int(row[0])
+        if total >= 651 <=700:
+            grade = "A+"
+        elif total >= 651 <=700:
+            grade = "A"
+        elif total >= 601 <= 650:
+            grade = "A-"
+        elif total >= 551 <= 600:
+            grade = "B"
+        elif total >= 501 <= 550:
+            grade = "C"
+        elif total >= 651 <=700:
+            grade = "D"
+        elif total >= 500 <=650:
+            grade = "E"
+        else:
+            grade = "F"
+        grades.append([grade])
+
+    for grade in grades:
+        grade_worksheet.append_row(grade)
+
+    print("Grade worksheet updated successfully.\n")
+
 def main():
     """
     Run all program functions.
@@ -116,6 +155,8 @@ def main():
     update_mark_worksheet(mark_data)
 
     calculate_and_update_total_marks()
+
+    assign_grades()
 
 print("Welcome to the Mark Sheet Automation Program.\n")
 main()
