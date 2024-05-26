@@ -1,19 +1,18 @@
 import gspread
 from google.oauth2.service_account import Credentials
+import uuid
 
-
+# Define the scope and credentials
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
     "https://www.googleapis.com/auth/drive"
-    ]
-
+]
 
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('mark_sheet')
-
 
 def get_mark_data():
     """
@@ -37,7 +36,6 @@ def get_mark_data():
 
     return mark_data
 
-
 def validate_data(values):
     """
     Inside the try, converts all string values into integers.
@@ -56,6 +54,11 @@ def validate_data(values):
 
     return True
 
+def generate_student_id():
+    """
+    Generate a unique student ID.
+    """
+    return str(uuid.uuid4())[:8]  # Shorten the UUID for simplicity
 
 def update_mark_worksheet(data):
     """
@@ -66,28 +69,6 @@ def update_mark_worksheet(data):
     mark_worksheet.append_row(data)
     print("Mark worksheet updated successfully.\n")
 
-
-def calculate_and_update_total_marks():
-    """
-    Calculate the total marks for each student and update the result worksheet
-    """
-    mark_worksheet = SHEET.worksheet("mark")
-    result_worksheet = SHEET.worksheet("result")    
-
-    marks = mark_worksheet.get_all_values()
-    results = []
-
-    for row in marks[1:]:  # Skip the header row
-        total = sum(int(mark) for mark in row)
-        results.append([total])
-        
-
-    for result in results:
-        result_worksheet.append_row(result)
-       
-
-
-
 def calculate_and_update_total_marks():
     """
     Calculate the total marks for each student and update the result worksheet
@@ -97,18 +78,19 @@ def calculate_and_update_total_marks():
 
     print("Updating Result worksheet...\n")
     marks = mark_worksheet.get_all_values()
+    existing_results = result_worksheet.col_values(1)  # Get existing student IDs
     results = []
-    
 
     for row in marks[1:]:  # Skip the header row
-        total = sum(int(mark) for mark in row if mark.strip() != '')
-        results.append([total])
+        student_id = row[0]
+        if student_id not in existing_results:  # Check if the result already exists
+            total = sum(int(mark) for mark in row[1:] if mark.strip() != '')
+            results.append([student_id, total])
 
     for result in results:
         result_worksheet.append_row(result)
         
     print("Result worksheet updated successfully.\n")
-
 
 def assign_grades():
     """
@@ -119,27 +101,28 @@ def assign_grades():
     grade_worksheet = SHEET.worksheet("grade")
 
     results = result_worksheet.get_all_values()
+    existing_grades = grade_worksheet.col_values(1)  # Get existing student IDs
     grades = []
 
     for row in results[1:]:  # Skip the header row
-        total = int(row[0])
-        if total >= 651 <=700:
-            grade = "A+"
-        elif total >= 651 <=700:
-            grade = "A"
-        elif total >= 601 <= 650:
-            grade = "A-"
-        elif total >= 551 <= 600:
-            grade = "B"
-        elif total >= 501 <= 550:
-            grade = "C"
-        elif total >= 651 <=700:
-            grade = "D"
-        elif total >= 500 <=650:
-            grade = "E"
-        else:
-            grade = "F"
-        grades.append([grade])
+        student_id = row[0]
+        if student_id not in existing_grades:  # Check if the grade already exists
+            total = int(row[1])
+            if 651 <= total <= 700:
+                grade = "A+"
+            elif 601 <= total <= 650:
+                grade = "A"
+            elif 551 <= total <= 600:
+                grade = "A-"
+            elif 501 <= total <= 550:
+                grade = "B"
+            elif 451 <= total <= 500:
+                grade = "C"
+            elif 401 <= total <= 450:
+                grade = "D"
+            elif total <= 400:
+                grade = "F"
+            grades.append([student_id, grade])
 
     for grade in grades:
         grade_worksheet.append_row(grade)
@@ -152,10 +135,11 @@ def main():
     """
     data = get_mark_data()
     mark_data = [int(num) for num in data]
-    update_mark_worksheet(mark_data)
+    student_id = generate_student_id()
+    mark_data_with_id = [student_id] + mark_data
+    update_mark_worksheet(mark_data_with_id)
 
     calculate_and_update_total_marks()
-
     assign_grades()
 
 print("Welcome to the Mark Sheet Automation Program.\n")
