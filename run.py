@@ -14,6 +14,7 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('mark_sheet')
 
+
 def get_mark_data():
     """
     Get mark figures input from the user.
@@ -36,6 +37,7 @@ def get_mark_data():
 
     return mark_data
 
+
 def validate_data(values):
     """
     Inside the try, converts all string values into integers.
@@ -54,11 +56,13 @@ def validate_data(values):
 
     return True
 
+
 def generate_student_id():
     """
     Generate a unique student ID.
     """
     return str(uuid.uuid4())[:8]  # Shorten the UUID for simplicity
+
 
 def update_mark_worksheet(data):
     """
@@ -69,6 +73,7 @@ def update_mark_worksheet(data):
     mark_worksheet.append_row(data)
     print("Mark worksheet updated successfully.\n")
 
+
 def calculate_and_update_total_marks():
     """
     Calculate the total marks for each student and update the result worksheet
@@ -78,19 +83,21 @@ def calculate_and_update_total_marks():
 
     print("Updating Result worksheet...\n")
     marks = mark_worksheet.get_all_values()
-    existing_results = result_worksheet.col_values(1)  # Get existing student IDs
+    # Get existing student IDs
+    existing_results = result_worksheet.col_values(1)
     results = []
 
     for row in marks[1:]:  # Skip the header row
         student_id = row[0]
-        if student_id not in existing_results:  # Check if the result already exists
+        # Check if the result already exists
+        if student_id not in existing_results:
             total = sum(int(mark) for mark in row[1:] if mark.strip() != '')
             results.append([student_id, total])
 
     for result in results:
         result_worksheet.append_row(result)
-        
     print("Result worksheet updated successfully.\n")
+
 
 def assign_grades():
     """
@@ -106,7 +113,8 @@ def assign_grades():
 
     for row in results[1:]:  # Skip the header row
         student_id = row[0]
-        if student_id not in existing_grades:  # Check if the grade already exists
+        # Check if the grade already exists
+        if student_id not in existing_grades:
             total = int(row[1])
             if 651 <= total <= 700:
                 grade = "A+"
@@ -129,6 +137,7 @@ def assign_grades():
 
     print("Grade worksheet updated successfully.\n")
 
+
 def main():
     """
     Run all program functions.
@@ -141,6 +150,7 @@ def main():
 
     calculate_and_update_total_marks()
     assign_grades()
+
 
 print("Welcome to the Mark Sheet Automation Program.\n")
 main()
