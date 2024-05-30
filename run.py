@@ -86,25 +86,29 @@ def calculate_and_update_total_marks():
     """
     Calculate the total marks for each student and update the result worksheet
     """
-    print("Updating Result worksheet...\n")
-    mark_worksheet = SHEET.worksheet("mark")
-    result_worksheet = SHEET.worksheet("result")
+    try:
+        print("Updating Result worksheet...\n")
+        mark_worksheet = SHEET.worksheet("mark")
+        result_worksheet = SHEET.worksheet("result")
 
-    marks = mark_worksheet.get_all_values()
-    # Get existing student IDs
-    existing_results = result_worksheet.col_values(1)
-    results = []
+        marks = mark_worksheet.get_all_values()
+        # Get existing student IDs
+        existing_results = result_worksheet.col_values(1)
+        results = []
 
-    for row in marks[1:]:  # Skip the header row
-        student_id = row[0]
-        # Check if the result already exists
-        if student_id not in existing_results:
-            total = sum(int(mark) for mark in row[1:] if mark.strip() != '')
-            results.append([student_id, total])
+        for row in marks[1:]:  # Skip the header row
+            student_id = row[0]
+            # Check if the result already exists
+            if student_id not in existing_results:
+                total = sum(
+                    int(mark) for mark in row[1:] if mark.strip() != '')
+                results.append([student_id, total])
 
-    for result in results:
-        result_worksheet.append_row(result)
-    print("Result worksheet updated successfully.\n")
+        for result in results:
+            result_worksheet.append_row(result)
+        print("Result worksheet updated successfully.\n")
+    except Exception as e:
+        print(f"Failed to update result worksheet: {e}")
 
 
 def assign_grades():

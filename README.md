@@ -1,80 +1,105 @@
 
 
-# Welcome to Academic Exam's Mark Sheet Grade producer App
-# 
+# Welcome to Mark-Sheet Grade Producer App
 
 ## Table of Contents
- + [Purpose](#purpose)
-  + [Bugs](#bugs)
-   -  [Fixing](#fixing)
- + [Validation](#validation)
-   - [HTML](#html)
-   - [CSS](#css)
- + [Acknowledgements](#acknowledgements)
-   - [Credits](#credits)
-   - [Technologies Used](#technologies-used)
-   - [Languages Used](#languages-used)
-   - [Websites](#websites)
-   - [Content](#content)
-   -  [Softwares](#softwares)
- + [Deployment](#deployment)
- + [Conclusion](#conclusion)
+
++ [Introduction](#introduction)
++ [Purpose](#purpose)
++ [Features](#features)
++ [Prerequisites](#prerequisites)
++ [Installation](#installation)
++ [Error Handling](#error-handling)
++ [Testing](#testing)
++ [Bugs](#bugs)
++ [Validation](#validation)
++ [Acknowledgements](#acknowledgements)
++ [Credits](#credits)
++ [Technologies Used](#technologies-used)
++ [Websites](#websites)
++ [License](#license)
++ [Deployment](#deployment)
++ [Conclusion](#conclusion)
++ [Contact](#contact)
  
+## Introduction
+
+Wellcome to Mark-Sheet Grade Producer Automation App. This tool automates the process of collecting, validating, and recording student marks, calculating total marks and assigning grades based on given criteria.
+
 ## Purpose
-Wellcome to [Little Chess Club](https://abdurrahimb.github.io/chess-club/) Website!
 
-This wesite is intended to the Chess loving people who wants to learn how to play chess. If they want to learn playing chess or even they want their children to learn and grow interest. This website offers information about benifits of playing chess. They will find information about the positive impact of playing chess by the recreational players or even pupils of ADHD and Dementia. The website offers three different courses on a different page called "Courses" and interested people who wants to sign up can contact us in a different page called Contact Us. This is a fully responsive website. People can access the site from their mobile phones all the way upto any size over 1200px.
+The Mark-Sheet Automation Program is designed to streamline the management of student marks obtained from the exams. It interacts with Google Sheets to:
+- Collect and validate mark data.
+- Calculate total marks.
+- Assign grades based on the total marks.
 
+## Features
+
+- **Data Collection**: Secure and validated collection of student marks obtained by subjects.
+- **Mark Calculation**: Automated calculation of total marks.
+- **Grade Assignment**: Grades assigned based on predefined criteria.
+- **Produces Unique Student IDst**: It produces unique student IDs and maintain throughout the wholw dataset worksheet.
+- **Google Sheets Integration**: Seamless interaction with Google Sheets for data storage and retrieval.
+
+## Prerequisites
+
+User of this app need to ensure that they have the following:
+- Python 3.6 or later
+- Google Cloud project with Sheets API and Drive API enabled
+- `creds.json` file for Google Service Account credentials
+
+## Installation
+
+1. **Install required Python packages**:
+install the libraries to the python terminal (pip install gspread google-auth)
+
+2. **Set up Google Service Account**:
+    - Create a Google Cloud project.
+    - Enable Sheets API and Drive API.
+    - Create a service account, download the credential file, rename it to `creds.json`  and upload it to the root directory of the github.
+    - Share Google Sheets with the service account email with editor access.
+
+3. **Security of Credentials**: add creds file to the .gitignore so that no third party app have access to private information.
+
+4. **Dependencies**: Install dependancie to the terminal (pip3 freeze > requirements.txt) 
 
 
 
 ## Testing
 
-I have tested the site manually which looked fine on all devices. I checked the form filled out and send on from both sizes. It successfully submitted to the server. Fields needs to have inputs, email field needs a valid email address, set minlength in the fileds. 
+I have tested the App manually which looked fine on. I checked the App through linter. It successfully submitted to the server. Fields needs to have inputs, email field needs a valid email address, set minlength in the fileds. 
 
 |  | Test | Result |
 |---|:---|---|
 | 1 | Implement a given algorithom as a computer program | Pass |
 | 2 | Pass through Python Linter eg pep8 | Pass |
-| 3 | All intended functionality works asa per critical project objectives | Pass |
+| 3 | All intended functionality works as per critical project objectives | Pass |
 | 4 | Code meets minimum readability | Pass |
 | 5 | Code handles empty or invalid input | Pass |
 | 6 | Consistant and effective markdown formatting when writing README file | Pass |
 | 7 | Identify and repair coding error| Pass |
 | 8 | Basic manual Testing | Pass |
-| 9 |implement the use of external Python Libraries | Pass |
-| 10 | Use git & Github for version control | Pass |
+| 9 | Implement the use of external Python Libraries | Pass |
+| 10| Use git & Github for version control | Pass |
 | 11| Deploy final version Python code to Cloud-based platform | Pass |
 | 12| Check for commented out code | Pass |
+| 13| Use Exception Error handling | Pass |
 
 
 ## Bugs
 
-  ### Result
-
-  I found a bug when the site finished. Results and solutions are as follow:
-
-1. On the mobile device header covered the heading of the courses page.
-2. There was no heading for section footer.
-
-  ### Fixing
-
-  1. I added margin to the header and resolved the issue.
-  2. I added a hidden heading style upon adding the heading.
 
 ## Validation
 
-I have used HTML and Css validators for all three pages and stylesheet. There was no errors or warning.
+I have manually checked with python code checker linter and found 
 
 + Python Validation by Linter
 
 [Linter](https://pep8ci.herokuapp.com/)
 
-
-
 ## Credits
 
-I gained a lot of knowledge from doing the Full Stack Software Development programme with [Code Institute](https://learn.codeinstitute.net/)
+I gained a lot of knowledge from doing the Python programme with [Code Institute](https://learn.codeinstitute.net/)
 
 
 ## Technologies Used
@@ -83,27 +108,23 @@ I gained a lot of knowledge from doing the Full Stack Software Development progr
  + GitPod
  + LMS
 
-## Languages Used
+## Language Used
 
   + Python
 
-
-
-
 ## Acknowledgements
 
-My lovely classmates on Code Institute, Tutors and My Mentor Mr. Alan Bushell. 
+My lovely slack community on Code Institute, Tutors and My Mentor Mr. Alan Bushell. 
 
 ## Softwares
 
 I have used different softwares to prepare this site. Here are the used softwares
-  + Adobe Photoshop
   + Windows Image Resizer
   + [Online image converter to .webp](https://convertio.co/jpg-webp/)
 
 ## Deployment
 
-Here is the step by step process to deploy this app to the github depository.
+Here is the step by step process to deploy this app to Heroku.
 1. First we need to go to related repository [My Repo](https://github.com/AbdurRahimB/MyPythonProject)
 2. Copy the repository link.
 3. Login to Heroku.com website
@@ -127,4 +148,3 @@ Here is the step by step process to deploy this app to the github depository.
 
 ## Conclusion
 
-This is a three page mobile first fully responsive Chess Club website. The website is attractive to the specifit type of people who would love playing or joining a chess club. There are plenty of information why you should join in playing chess and enough attraction to join this specific club. Courses are designed for every level of player regardless their age. This README file covers all the process of building journey of this beautiful site. 
