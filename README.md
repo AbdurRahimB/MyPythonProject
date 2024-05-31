@@ -6,6 +6,7 @@
 
 + [Introduction](#introduction)
 + [Purpose](#purpose)
++ [Usage](#usage)
 + [Features](#features)
 + [Prerequisites](#prerequisites)
 + [Installation](#installation)
@@ -13,10 +14,9 @@
 + [Testing](#testing)
 + [Bugs](#bugs)
 + [Validation](#validation)
-+ [Acknowledgements](#acknowledgements)
 + [Credits](#credits)
 + [Technologies Used](#technologies-used)
-+ [Websites](#websites)
++ [Languages Used](#language-used)
 + [License](#license)
 + [Deployment](#deployment)
 + [Conclusion](#conclusion)
@@ -32,6 +32,8 @@ The Mark-Sheet Automation Program is designed to streamline the management of st
 - Collect and validate mark data.
 - Calculate total marks.
 - Assign grades based on the total marks.
+
+## Usage
 
 ## Features
 
@@ -63,11 +65,13 @@ install the libraries to the python terminal (pip install gspread google-auth)
 
 4. **Dependencies**: Install dependancie to the terminal (pip3 freeze > requirements.txt) 
 
+## Error Handling
+
 
 
 ## Testing
 
-I have tested the App manually which looked fine on. I checked the App through linter. It successfully submitted to the server. Fields needs to have inputs, email field needs a valid email address, set minlength in the fileds. 
+I have tested the App manually which looked fine with no error found. I checked the App through linter. It successfully submitted to the server and communicate with user. Fields needs to have inputs with seven set of data separated by a comma, data type validates integers and set as minlength in the fileds. 
 
 |  | Test | Result |
 |---|:---|---|
@@ -88,14 +92,13 @@ I have tested the App manually which looked fine on. I checked the App through l
 
 ## Bugs
 
+This app run through linter which produces no errors. Image is given below.
 
 ## Validation
 
-I have manually checked with python code checker linter and found 
+I have manually checked with python code checker linter and found no error
 
-+ Python Validation by Linter
-
-[Linter](https://pep8ci.herokuapp.com/)
++ Python Validation by [Linter](https://pep8ci.herokuapp.com/)
 
 ## Credits
 
@@ -112,15 +115,8 @@ I gained a lot of knowledge from doing the Python programme with [Code Institute
 
   + Python
 
-## Acknowledgements
 
-My lovely slack community on Code Institute, Tutors and My Mentor Mr. Alan Bushell. 
-
-## Softwares
-
-I have used different softwares to prepare this site. Here are the used softwares
-  + Windows Image Resizer
-  + [Online image converter to .webp](https://convertio.co/jpg-webp/)
+## License
 
 ## Deployment
 
