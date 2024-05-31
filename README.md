@@ -35,6 +35,8 @@ The Mark-Sheet Automation Program is designed to streamline the management of st
 
 ## Usage
 
+This Mark Sheet Automation Program provides significant value to its users by automating the process of collecting, validating and processing sudent marks, calculating totals, assigning grades and updating records in Google sheets. By using this app its users can automate routine tasks by saving time and reducing errors with user friendly interface and real time feedback. Its outcome is consistant and leaves accuracy in data handling. It can be used from any centralised location, data can be accessed by google sheets and have all the google drive's data recovery and backup functions. User of this App will benifit and enjoy all the exclusive features that built in with this app to automate its educational result.
+
 ## Features
 
 - **Data Collection**: Secure and validated collection of student marks obtained by subjects.
@@ -42,6 +44,7 @@ The Mark-Sheet Automation Program is designed to streamline the management of st
 - **Grade Assignment**: Grades assigned based on predefined criteria.
 - **Produces Unique Student IDst**: It produces unique student IDs and maintain throughout the wholw dataset worksheet.
 - **Google Sheets Integration**: Seamless interaction with Google Sheets for data storage and retrieval.
+- **Student ID generator**: UUID python library is used to generate unique Stident IDs and follow through the worksheets. 
 
 ## Prerequisites
 
@@ -98,6 +101,27 @@ This app run through linter which produces no errors. Image is given below.
 
 I have manually checked with python code checker linter and found no error
 
+Thhe following image shows that there is no error found.
+![alt text](assets/images/Linter-validation.png)
+
+The following image showsinvalid data entry will give warning to enter data as specified.
+![alt text](assets/images/less-input.png)
+
+The following image showsinvalid data entry will give warning to enter data as specified as well.
+![alt text](assets/images/more-inputs.png) 
+
+The following image shows that data entry updatetes google sheet.
+![alt text](assets/images/update-marksheet.png) 
+
+The following image shows that upon data entry to the terminal it will produce the sum of result.
+![alt text](assets/images/update-result-worksheet.png) 
+
+
+The following image shows that upon calculation result, it will produce grade as directed.
+![alt text](assets/images/update-grade-worksheet.png) 
+
+
+
 + Python Validation by [Linter](https://pep8ci.herokuapp.com/)
 
 ## Credits
@@ -147,4 +171,4 @@ Here is the step by step process to deploy this app to Heroku.
 
 ## Conclusion
 
-
+Mark Sheet Automation App is a very user friendly, effecient, time saving App. Any Educational Institution can use this app to reduce its manual efforts with no errors on the process which can save valuable time and money. It adds substantial value to its users by automating mundane tasks, ensuring accuracy, providing user friendly interface. It supports efficiant data management reduces manual work with no mistakes. Additionally, it offers scalability and flexibility to accommodate varying data volumes and future enhancements. By leveraging the capabilities of Google Sheets, the program ensures that educational institutions can maintain organized, accessible, and secure records of student performance.
