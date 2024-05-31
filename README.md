@@ -67,7 +67,7 @@ install the libraries to the python terminal (pip install gspread google-auth)
 
 ## Error Handling
 
-
+All the functions have been wrapped with error handling mechanisms. During the use of this app, if it face with any unexpected encounter, it will produce an error message rather than chrashing.
 
 ## Testing
 
@@ -113,10 +113,13 @@ I gained a lot of knowledge from doing the Python programme with [Code Institute
 
 ## Language Used
 
+This app is built with only with following language.
   + Python
 
 
 ## License
+
+This app can be licensed under any licensing authority for a user or company or corporation.
 
 ## Deployment
 
@@ -126,21 +129,22 @@ Here is the step by step process to deploy this app to Heroku.
 3. Login to Heroku.com website
 4. Go to Dashboard
 5. Create New App
-6. Give name of the App, In this case I named as "Mark Sheet Grade Producer App"
+6. Give a name of the App, In this case I named as "Mark Sheet Grade Producer App"
 7. Choose a region, In this case, I chose, Europe
 8. Go to Settings
 9. Add config Var
-10. In this case add Creds as key and paste in the value in the value
+10. In this case add CREDS as key and paste in the value in the value
 11. Add PORT as key and 8000 as value
-12. Add Builspacks
+12. Add Buildspacks
 13. Add Python
 14. Add nodejs
 15. Go to Deploy tab
 16. Select Github deployment method
 17. Search my depository from the github and select and connect it.
 18. Deploy Manually
-19. Open the view link to the terminal.
-20. Deployed successfully
+19. Open the 'view link' to see into the terminal.
+20. Deployed and operating successfully
 
 ## Conclusion
+
 
